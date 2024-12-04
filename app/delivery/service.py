@@ -21,6 +21,8 @@ from app.utils.unitofwork import IUnitOfWork
 
 
 class DishService:
+    "Сервис для работы с блюдами"
+
     async def add_dish(self, uow: IUnitOfWork, dish: DishAddDTO) -> DishDTO:
         dish_dict = dish.model_dump()
         async with uow:
@@ -41,6 +43,8 @@ class DishService:
 
 
 class RestaurantService:
+    "Сервис для работы с рестораном"
+
     async def add_restaurant(
         self, uow: IUnitOfWork, restaurant: RestaurantAddDTO
     ) -> RestaurantDTO:
@@ -81,12 +85,15 @@ class RestaurantService:
 
 
 class ShopCartService:
+    "Сервис для работы с корзиной товаров"
+
     async def add_dish_to_cart(
         self,
         uow: IUnitOfWork,
         shop_cart_dto: ShoppingCartAddDTO,
         user_id: int,
     ):
+        "Добавляем блюдо в корзину"
         async with uow:
             shop_cart = await uow.shopping_carts.find_one(user_id=user_id)
             if not shop_cart:
@@ -138,6 +145,7 @@ class ShopCartService:
         uow: IUnitOfWork,
         shopping_cart_id: int,
     ):
+        "Получаем блюда в корзине"
         async with uow:
             positions = await uow.shopping_carts.get_position(shopping_cart_id)
             if positions:
@@ -158,6 +166,11 @@ class ShopCartService:
         uow: IUnitOfWork,
         user_id: int,
     ):
+        """
+        получаем все данные с корзины\n
+        общая стоимость всех блюд,
+        кол. блюд и прочее
+        """
         async with uow:
             shop_cart = await uow.shopping_carts.find_one(user_id=user_id)
 
@@ -178,6 +191,9 @@ class ShopCartService:
         uow: IUnitOfWork,
         user: UserDTO,
     ):
+        """
+        Оплата корзины
+        """
         async with uow:
             shop_cart = await uow.shopping_carts.find_one(user_id=user.id)
 

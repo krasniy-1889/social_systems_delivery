@@ -51,6 +51,8 @@ class DishORM(BaseORM, TimestampMixin):
 
 
 class ShoppingCartORM(BaseORM):
+    "корзина заказов"
+
     __tablename__ = "shopping_cart"
 
     user_id: Mapped[int] = mapped_column(
@@ -65,6 +67,8 @@ class ShoppingCartORM(BaseORM):
 
 
 class ShoppingCartItemsORM(BaseORM, TimestampMixin):
+    "модель блюд связанных с корзиной"
+
     __tablename__ = "shopping_cart_items"
 
     shopping_cart_id: Mapped[int] = mapped_column(
@@ -91,6 +95,8 @@ class ShoppingCartItemsORM(BaseORM, TimestampMixin):
 
 
 class OrderORM(BaseORM, TimestampMixin):
+    "Модель оплаченых заказов"
+
     __tablename__ = "orders"
 
     user_id: Mapped[int] = mapped_column(
