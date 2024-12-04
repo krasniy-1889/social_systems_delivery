@@ -1,0 +1,13 @@
+# Django
+logs
+*.pot
+*.pyc
+.idea
+__pycache__
+local_settings.py
+venv
+# macOS
+.DS_Store
+# IDE
+.vscode
+.ruff_cache
