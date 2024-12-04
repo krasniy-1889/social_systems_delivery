@@ -58,5 +58,5 @@ class ShopCartPostitionDTO(BaseModel):
 
 
 class ShopCartReadDTO(BaseModel):
-    total_price: PositiveInt
+    total_price: int
     positions: list[ShopCartPostitionDTO]
