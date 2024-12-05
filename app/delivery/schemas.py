@@ -50,6 +50,15 @@ class ShoppingCartWithIdDTO(ShoppingCartAddDTO):
     shopping_cart_id: PositiveInt
 
 
+class ShopCartAddReadDTO(BaseModel):
+    id: PositiveInt
+    dish_id: PositiveInt
+    quantity: PositiveInt
+    shopping_cart_id: PositiveInt
+    created_at: datetime.datetime
+    updated_at: datetime.datetime
+
+
 class ShopCartPostitionDTO(BaseModel):
     id: PositiveInt
     name: str

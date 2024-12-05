@@ -15,6 +15,7 @@ from app.delivery.schemas import (
     RestaurantAddDTO,
     RestaurantDishesDTO,
     RestaurantDTO,
+    ShopCartAddReadDTO,
     ShopCartReadDTO,
     ShoppingCartAddDTO,
 )
@@ -91,7 +92,11 @@ async def add_restaurant(
     return restaurant
 
 
-@router.post("/add_to_cart", status_code=status.HTTP_201_CREATED)
+@router.post(
+    "/add_to_cart",
+    response_model=ShopCartAddReadDTO,
+    status_code=status.HTTP_201_CREATED,
+)
 async def add_to_cart(
     uow: UOWDep,
     current_user: Annotated[UserDTO, Depends(get_current_user)],
